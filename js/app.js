@@ -51,7 +51,7 @@ var addMarker=function(location){
 var closeAllInfoWIndows=function(){
 	infoWindows.forEach(function(infowindow){
   		console.log("closing");
-  		infowindow.close();
+  		infowindow.setMap(null);
   	});
 }
 
