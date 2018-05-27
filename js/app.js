@@ -1,5 +1,6 @@
 var map;
-
+var infoWindows=[];
+var markers=[];
 var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -38,21 +39,51 @@ var addMarker=function(location){
     title: location.title
   });
 
-var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+  infowindow=createInfoWindow();
+   
 
   marker.addListener('click', function() {
+  	closeAllInfoWIndows();
     infowindow.open(map, marker);
   });
+  markers.push(marker);
 };
+var closeAllInfoWIndows=function(){
+	infoWindows.forEach(function(infowindow){
+  		console.log("closing");
+  		infowindow.close();
+  	});
+}
+
+var createInfoWindow=function(){
+	var infowindow = new google.maps.InfoWindow({
+       content: contentString
+  });
+    infoWindows.push(infowindow);
+    return infowindow;
+}
 
 var ViewModel=function(){
     var self=this;
     locations.forEach(function(location){addMarker(location)});
     self.locationsarray = ko.observableArray(locations);
+    
+    openInfoWindow=function(place){
+   	var title=place.title;
+   	markers.forEach(function(marker){
+   		console.log(marker.title+" "+title);
+   		if(marker.title===title){
+   			  infowindow=createInfoWindow();
+   			  closeAllInfoWIndows();
+   			  infowindow.open(map, marker);
+   			}
+   		});
+   	};
+    
+          
+   };
 
 
-};
+
 
 
