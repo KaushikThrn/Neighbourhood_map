@@ -50,7 +50,6 @@ var addMarker=function(location){
 };
 var closeAllInfoWIndows=function(){
 	infoWindows.forEach(function(infowindow){
-  		console.log("closing");
   		infowindow.setMap(null);
   	});
 }
@@ -67,11 +66,10 @@ var ViewModel=function(){
     var self=this;
     locations.forEach(function(location){addMarker(location)});
     self.locationsarray = ko.observableArray(locations);
-    
+    query: ko.observable('')
     openInfoWindow=function(place){
    	var title=place.title;
    	markers.forEach(function(marker){
-   		console.log(marker.title+" "+title);
    		if(marker.title===title){
    			  infowindow=createInfoWindow();
    			  closeAllInfoWIndows();
