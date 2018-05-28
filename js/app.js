@@ -27,8 +27,9 @@ function initMap() {
     center: {lat: 41.385064, lng: 2.173403},
     zoom: 12
      })
-
+    
     ko.applyBindings(new ViewModel());
+
  };
 
 var addMarker=function(location){
@@ -67,6 +68,12 @@ var ViewModel=function(){
     locations.forEach(function(location){addMarker(location)});
     self.locationsarray = ko.observableArray(locations);
     query=ko.observable('');
+    self.filterPins = ko.computed(function () {
+    var search = this.query().toLowerCase();
+    return ko.utils.arrayFilter(self.locationsarray(), function (pin) {
+        return pin.title.toLowerCase().indexOf(search) >= 0;
+    });
+  });
     openInfoWindow=function(place){
    	var title=place.title;
    	markers.forEach(function(marker){

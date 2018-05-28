@@ -13,7 +13,7 @@
 	<div id="list">
         <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
 		<table>
-		<tbody data-bind="template: {name:'location_list', foreach: locationsarray}">
+		<tbody data-bind="template: {name:'location_list', foreach: filterPins}">
     </tbody>
 </table>
 <script type="text/html" id="location_list">
