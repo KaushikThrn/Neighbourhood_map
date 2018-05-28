@@ -45,6 +45,7 @@ var addMarker=function(location){
 
   marker.addListener('click', function() {
   	closeAllInfoWIndows();
+    infowindow=createInfoWindow(marker.title);
     infowindow.open(map, marker);
   });
   markers.push(marker);
@@ -55,9 +56,10 @@ var closeAllInfoWIndows=function(){
   	});
 }
 
-var createInfoWindow=function(){
+var createInfoWindow=function(title){
+
 	var infowindow = new google.maps.InfoWindow({
-       content: contentString
+       content: title
   });
     infoWindows.push(infowindow);
     return infowindow;
@@ -78,7 +80,7 @@ var ViewModel=function(){
    	var title=place.title;
    	markers.forEach(function(marker){
    		if(marker.title===title){
-   			  infowindow=createInfoWindow();
+   			  infowindow=createInfoWindow(marker.title);
    			  closeAllInfoWIndows();
    			  infowindow.open(map, marker);
    			}
