@@ -1,6 +1,7 @@
 var map;
 var infoWindows=[];
 var markers=[];
+var blurb;
 var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -57,9 +58,23 @@ var closeAllInfoWIndows=function(){
 }
 
 var createInfoWindow=function(title){
+  console.log("sending the request")
+  $.ajax({
+        type: "GET",
+        url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Camp_Nou&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+        },
+        error: function (errorMessage) {
+          console.log("error here")
+        }
+    });
+
 
 	var infowindow = new google.maps.InfoWindow({
-       content: title
+       content: contentString
   });
     infoWindows.push(infowindow);
     return infowindow;
