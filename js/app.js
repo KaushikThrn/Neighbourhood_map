@@ -66,7 +66,7 @@ var ViewModel=function(){
     var self=this;
     locations.forEach(function(location){addMarker(location)});
     self.locationsarray = ko.observableArray(locations);
-    query: ko.observable('')
+    query=ko.observable('');
     openInfoWindow=function(place){
    	var title=place.title;
    	markers.forEach(function(marker){
