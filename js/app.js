@@ -25,6 +25,9 @@ var addMarker=function(location){
   marker.addListener('click', function() {
   	closeAllInfoWIndows();
     console.log("sending from event listener "+marker.title)
+     marker.setAnimation(google.maps.Animation.BOUNCE);
+     setTimeout(function(){ marker.setAnimation(null); }, 1000);
+
     infowindow=createInfoWindow(marker.title);
     infowindow.open(map, marker);
   });
@@ -68,9 +71,11 @@ catch(err) {
  
             // remove cite error
             blurb.find('.mw-ext-cite-error').remove();
-            console.log("this is "+new String(blurb))
+            blurb.find('.mw-references-wrap').remove();
+            blurb.find('table').remove();
+            console.log("this is "+blurb.html())
             //contentString=$('#article').html($(blurb).find('p'));
-            infowindow.setContent(data.parse.text["*"]);
+            infowindow.setContent(blurb.html());
 
 
 
