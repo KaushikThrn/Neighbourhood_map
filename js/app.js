@@ -2,7 +2,7 @@ var map;
 var infoWindows=[];
 var markers=[];
 var blurb;
-var contentString = "Loading Pls wait"
+var contentString = "Loading"
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -37,7 +37,9 @@ var closeAllInfoWIndows=function(){
 }
 
 var createInfoWindow=function(title){
-  var infowindow;
+  var infowindow = new google.maps.InfoWindow({
+       content: contentString
+        });
   console.log("create infowindow "+title)
   try {
     var search=title.replace(" ","_")
@@ -47,7 +49,7 @@ catch(err) {
 }
   $.ajax({
         type: "GET",
-        url: `http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=${search}&callback=?`,
+        url: `http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Camp_Nou&callback=?`,
         contentType: "application/json; charset=utf-8",
         async: false,
         dataType: "json",
@@ -67,7 +69,8 @@ catch(err) {
             // remove cite error
             blurb.find('.mw-ext-cite-error').remove();
             console.log("this is "+new String(blurb))
-            contentString=$('#article').html($(blurb).find('p'));
+            //contentString=$('#article').html($(blurb).find('p'));
+            infowindow.setContent(data.parse.text["*"]);
 
 
 
@@ -78,9 +81,6 @@ catch(err) {
     });
 
 
-	var infowindow = new google.maps.InfoWindow({
-       content: contentString
-  });
     infoWindows.push(infowindow);
     return infowindow;
 }
