@@ -105,6 +105,8 @@ var ViewModel=function(){
    	var title=place.title;
    	markers.forEach(function(marker){
    		if(marker.title===title){
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout(function(){ marker.setAnimation(null); }, 1000);
    			  infowindow=createInfoWindow(marker.title);
    			  closeAllInfoWIndows();
    			  infowindow.open(map, marker);
