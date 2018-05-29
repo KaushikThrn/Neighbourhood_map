@@ -54,7 +54,21 @@ catch(err) {
         success: function (data, textStatus, jqXHR) {
           var result=data.parse.text["*"]
           console.log(contentString)
-          contentString=result
+          var markup = data.parse.text["*"];
+          var blurb = $('<div></div>').html(markup);
+          console.log("here is 1"+blurb)
+ 
+            // remove links as they will not work
+            blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+ 
+            // remove any references
+            blurb.find('sup').remove();
+ 
+            // remove cite error
+            blurb.find('.mw-ext-cite-error').remove();
+            console.log("this is "+new String(blurb))
+            contentString=$('#article').html($(blurb).find('p'));
+
 
 
         },
