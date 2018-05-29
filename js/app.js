@@ -52,7 +52,7 @@ catch(err) {
 }
   $.ajax({
         type: "GET",
-        url: `http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=Camp_Nou&callback=?`,
+        url: `http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=${search}&callback=?`,
         contentType: "application/json; charset=utf-8",
         async: false,
         dataType: "json",
@@ -73,6 +73,7 @@ catch(err) {
             blurb.find('.mw-ext-cite-error').remove();
             blurb.find('.mw-references-wrap').remove();
             blurb.find('table').remove();
+            blurb.find('.hatnote').remove();
             console.log("this is "+blurb.html())
             //contentString=$('#article').html($(blurb).find('p'));
             infowindow.setContent(blurb.html());

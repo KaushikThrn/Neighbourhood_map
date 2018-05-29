@@ -7,14 +7,14 @@ var locations=[
         }
     },
     {  
-        title: 'Temple of the Sacred Heart',
+        title: 'Temple Expiatori del Sagrat Cor',
         latlong: {
             lat: 41.422075,
             lng: 2.118787
         }
     },
     {
-        title: 'La Sagrada Familia',
+        title: 'Sagrada Família',
         latlong: {
             lat: 41.403630,
             lng: 2.174356
@@ -28,7 +28,7 @@ var locations=[
         }
     },
     {
-        title: 'Casa Vicens Gaudí',
+        title: 'Casa Vicens',
         latlong: {
             lat: 41.403498,
             lng: 2.150645
