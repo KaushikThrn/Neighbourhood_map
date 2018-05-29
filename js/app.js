@@ -97,6 +97,11 @@ var ViewModel=function(){
     query=ko.observable('');
     self.filterPins = ko.computed(function () {
     var search = this.query().toLowerCase();
+    for (var i = 0; i < markers.length; i++ ) {
+    markers[i].setMap(null);
+     }
+    const result = locations.filter(location => location.title.toLowerCase().indexOf(search) >= 0);
+    result.forEach(function(location){addMarker(location)});
     return ko.utils.arrayFilter(self.locationsarray(), function (pin) {
         return pin.title.toLowerCase().indexOf(search) >= 0;
     });
