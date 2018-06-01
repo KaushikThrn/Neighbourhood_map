@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
@@ -22,24 +20,23 @@
                 <a class="navbar-brand"><strong>Barcelona</strong></a>
             </div>
             <form class="navbar-form navbar-right" role="search">
-                <input type="text" data-bind="value: query, valueUpdate: 'keyup'" class="form-control pull-right"
-                placeholder="Search">
+                <input type="text" data-bind="value: query, valueUpdate: 'keyup'" class="form-control pull-right" placeholder="Search">
             </form>
-            <button class="btn btn-primary hamburger-icon" type="button" data-toggle="collapse"
-            data-target="#wrapper" aria-expanded="true">&#9776;</button>
+            <button class="btn btn-primary hamburger-icon" type="button" data-toggle="collapse" data-target="#wrapper" aria-expanded="true">&#9776;</button>
         </div>
     </nav>
 
-    
- 
-    <div id="wrapper" aria-expanded="true" class="collapse in">    
+
+
+    <div id="wrapper" aria-expanded="true" class="collapse in">
         <div id="list" class="col-sm-3 col-md-2 text-justify sidebar">
-        <ul class="nav nav-sidebar" data-bind="template: {name:'location_list', foreach: filterPins}">
-        </ul>
-        <script type="text/html" id="location_list">
+            <ul class="nav nav-sidebar" data-bind="template: {name:'location_list', foreach: filterPins}">
+            </ul>
+            <script type="text/html" id="location_list">
                 <li data-bind="text: title, click: openInfoWindow"></li>
-        </script>
-    </div></div>
+            </script>
+        </div>
+    </div>
 
     <div id="map"></div>
 
