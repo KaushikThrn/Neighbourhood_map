@@ -25,6 +25,9 @@ ul{
     margin-left: 10px;
 
 }
+li{
+	cursor: pointer;
+}
 
 .hamburger-icon {
     margin: 8px 5px 5px 10px;

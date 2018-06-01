@@ -13,7 +13,11 @@ function initMap() {
     ko.applyBindings(new ViewModel());
 
  };
-
+ 
+// handle map error
+function googleMapsError() {
+    alert('An error occurred with Google Maps!');
+}
 var addMarker=function(location){
 
 	var marker = new google.maps.Marker({
@@ -24,7 +28,6 @@ var addMarker=function(location){
    
   marker.addListener('click', function() {
   	closeAllInfoWIndows();
-    console.log("sending from event listener "+marker.title)
      marker.setAnimation(google.maps.Animation.BOUNCE);
      setTimeout(function(){ marker.setAnimation(null); }, 1000);
 
@@ -58,12 +61,12 @@ catch(err) {
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
           var result=data.parse.text["*"]
-          console.log(contentString)
+         
           var markup = data.parse.text["*"];
           var blurb = $('<div></div>').html(markup);
-          console.log("here is 1"+blurb)
+         
  
-            // remove links as they will not work
+            // remove links 
             blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
  
             // remove any references
@@ -74,15 +77,24 @@ catch(err) {
             blurb.find('.mw-references-wrap').remove();
             blurb.find('table').remove();
             blurb.find('.hatnote').remove();
-            console.log("this is "+blurb.html())
+            var para_first=blurb.find("p:nth-child(1)");
+            
+            var para_second=blurb.find("p:nth-child(2)");
+            
             //contentString=$('#article').html($(blurb).find('p'));
-            infowindow.setContent(blurb.html());
+            if(typeof para_first.html() === "undefined") {
+               infowindow.setContent(para_second.html());
+               }
+               else{
+                infowindow.setContent(para_first.append(para_second).html());
+               }
+            
 
 
 
         },
         error: function (errorMessage) {
-          console.log("error here")
+          infowindow.setContent("error loading data");
         }
     });
 
