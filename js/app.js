@@ -107,6 +107,7 @@ var ViewModel=function(){
         return pin.title.toLowerCase().indexOf(search) >= 0;
     });
   });
+
     openInfoWindow=function(place){
    	var title=place.title;
    	markers.forEach(function(marker){
