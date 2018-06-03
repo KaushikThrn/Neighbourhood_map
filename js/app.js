@@ -94,7 +94,6 @@ var createInfoWindow = function(title) {
 
             var para_second = blurb.find("p:nth-child(2)");
 
-            //contentString=$('#article').html($(blurb).find('p'));
             if (typeof para_first.html() === "undefined") {//if the first paragraph returns undefined
                 infowindow.setContent(para_second.html());
             } else {
@@ -111,6 +110,7 @@ var createInfoWindow = function(title) {
     infoWindows.push(infowindow);
     return infowindow;
 }
+
 
 //Initialize the view model
 var ViewModel = function() {
@@ -132,7 +132,6 @@ var ViewModel = function() {
         const result = locations.filter(location => location.title.toLowerCase().indexOf(search) >= 0);
         result.forEach(function(location) {
             location.marker.setVisible(true);
-            console.log(location)
         });
         return ko.utils.arrayFilter(self.locationsarray(), function(pin) {
             return pin.title.toLowerCase().indexOf(search) >= 0;
