@@ -115,7 +115,7 @@ var createInfoWindow = function(title) {
 //Initialize the view model
 var ViewModel = function() {
     var self = this;
-    //Create markers based on the places in the locations.js file
+    //Create markers based on the places in the locations.js file and it to locations array
     for(var i=0;i<=locations.length-1;i++){
         locations[i].marker=addMarker(locations[i]);
     }
