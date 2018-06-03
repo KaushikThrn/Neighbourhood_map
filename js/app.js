@@ -42,6 +42,7 @@ var addMarker = function(location) {
         infowindow.open(map, marker);
     });
     markers.push(marker);
+    return marker;
 };
 
 //Close all the infowindows by setting setMap to null
@@ -115,22 +116,23 @@ var createInfoWindow = function(title) {
 var ViewModel = function() {
     var self = this;
     //Create markers based on the places in the locations.js file
-    locations.forEach(function(location) {
-        addMarker(location)
-    });
+    for(var i=0;i<=locations.length-1;i++){
+        locations[i].marker=addMarker(locations[i]);
+    }
     //Convert into an observable array
     self.locationsarray = ko.observableArray(locations);
     query = ko.observable('');
     //Search function, filters the markers and the results based on the query entered
     self.filterPins = ko.computed(function() {
         var search = this.query().toLowerCase();
-        //Destroy all markers
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
+        //Set marker visibility to false
+        for (var i = 0; i < locations.length; i++) {
+            locations[i].marker.setVisible(false);
         }
         const result = locations.filter(location => location.title.toLowerCase().indexOf(search) >= 0);
         result.forEach(function(location) {
-            addMarker(location)
+            location.marker.setVisible(true);
+            console.log(location)
         });
         return ko.utils.arrayFilter(self.locationsarray(), function(pin) {
             return pin.title.toLowerCase().indexOf(search) >= 0;
